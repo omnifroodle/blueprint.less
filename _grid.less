@@ -1,0 +1,151 @@
+/* --------------------------------------------------------------
+
+   grid.css
+   * Sets up an easy-to-use grid of x columns.
+
+   By default, the grid is 950px wide, with 24 columns
+   spanning 30px, and a 10px margin between columns.
+
+   If you need fewer or more columns, namespaces or semantic
+   element names, the following
+
+-------------------------------------------------------------- */
+@width: 960px;
+@column: 30px;
+@margin: 10px;
+@box_background: #E5ECF9;
+
+/* A container should group all your columns. */
+.container {
+  width: @width;
+  margin: 0 auto;
+}
+
+/* Use this class on any .span / container to see the grid. */
+.showgrid (@grid: 'src/grid.png') {
+  background: url(@grid);
+}
+
+
+/* Columns
+-------------------------------------------------------------- */
+
+/* Sets up basic grid floating and margin. */
+.column () {
+	float: left;
+	margin-right: @margin;
+}
+
+/* Use this mixin to set the width of a column. you should avoid @levels wider then @width */
+.span (@level: 1) {
+	.column;
+	width: (@level * @column) + ((@level - 1) * 10px);
+}
+
+/* The last column in a row needs this class. */
+.last { margin-right: 0; }
+
+/* Use these classes to set the width of an input. */
+.input_span (@level: 1) {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: ((@level * @column) + ((@level - 1) * 10px) - 12px);
+}
+
+/* Add these to a column to append empty cols. */
+.append (@level: 1) {
+	padding-right: ((@width * @level) + (@level * 10px));
+}
+
+/* Add these to a column to prepend empty cols. */
+
+.prepend (@level: 1) {
+	padding-left: ((@width * @level) + (@level * 10px));
+}
+
+/* Border on right hand side of a column. */
+.border () {
+  padding-right: 4px;
+  margin-right: 5px;
+  border-right: 1px solid #eee;
+}
+
+/* Border with more whitespace, spans one column. */
+.colborder () {
+  padding-right: 24px;
+  margin-right: 25px;
+  border-right: 1px solid #eee;
+}
+
+
+/* Use these classes on an element to push it into the
+next column, or to pull it into the previous column.  */
+
+.pull (@level: 1) {
+	margin-left: (@width * @level * -1) + (@level * -10px);
+	float: right; 
+	position:relative;
+}
+
+.push (@level: 1) {
+	margin: 0 ((@width * @level * -1) + (@level * -10px)) 1.5em ((@width * @level * -1) + (@level * -10px));
+	float: right; position:relative;
+}
+
+/* Misc classes and elements
+-------------------------------------------------------------- */
+
+/* In case you need to add a gutter above/below an element */
+.prepend-top {
+  margin-top:1.5em;
+}
+.append-bottom {
+  margin-bottom:1.5em;
+}
+
+/* Use a .box to create a padded box inside a column.  */
+.box {
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  background: @box_background;
+}
+
+/* Use this to create a horizontal ruler across a column. */
+hr {
+  background: #ddd;
+  color: #ddd;
+  clear: both;
+  float: none;
+  width: 100%;
+  height: .1em;
+  margin: 0 0 1.45em;
+  border: none;
+}
+
+hr.space {
+  background: #fff;
+  color: #fff;
+  visibility: hidden;
+}
+
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+.clearfix:after, .container:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow:hidden;
+}
+.clearfix, .container {display: block;}
+
+/* Regular clearing
+   apply to column that should drop below previous ones. */
+
+.clear { clear:both; }

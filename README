@@ -1,0 +1,54 @@
+This is branched from the Blueprint CSS project as of Apr 28, 2010
+
+This document is incomplete, PLEASE contact me with questions and suggestions.
+
+THE GOAL
+--------
+* A more flexible version of less that allowed for semantic class names in the css.  Using the mixins ability of less css structural information can be added to the class or id of a DOM element w/o pulling "styling" information directly into the HTML.  So we get the power of an industrial strength grid based framework but don't have to compromise semantic HTML.
+
+ex.
+
+<header>
+	.....
+</header>
+
+less.
+
+header {
+	.container;
+}
+
+* A "build" style css framework with really powerful customization right at the top of the files in variable declarations (a work in progress).
+
+OTHER STUFF
+--------
+more information on less is available at lesscss.org.  A textmate bundle is available for less as well as a native Mac OS X app "http://incident57.com/less/"
+
+you will need to have less installed (more info at lesscss.org)
+
+> sudo gem install less
+
+You can include the same files you normally would for blueprint.
+
+In your HTML include the normal files you would for blueprint
+
+* blueprint/screen.css
+* blueprint/print.css
+* blueprint/ie.css
+
+GOTCHAS:
+-------
+push_x, append_x and similar classes have been replaced by push(1) or append(10)
+
+grid attributes are adjustable, but the number of columns isn't set to a maximum.  (in a 10 "column" layout push(30) will still do *something*)
+
+you will need to add the .last mixin to any class in the final column of your design (blueprint had this hardwired)
+
+you may need to "touch" the screen.css if you modify _grid.less or any of the other files it aggregates (_layout.less, _typography.less)
+
+TODO:
+-------
+* better support for compression (though less does greatly reduce these files)
+* figure out a way to keep up with changes in the main blueprint branch
+* pull more settings into variables
+* possibly pull all the elements of screen.less into one file with a settings header for easier configuration
