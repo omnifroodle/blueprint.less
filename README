@@ -4,7 +4,7 @@ This document is incomplete, PLEASE contact me with questions and suggestions.
 
 THE GOAL
 --------
-* A more flexible version of less that allowed for semantic class names in the css.  Using the mixins ability of less css structural information can be added to the class or id of a DOM element w/o pulling "styling" information directly into the HTML.  So we get the power of an industrial strength grid based framework but don't have to compromise semantic HTML.
+* A more flexible version of Blueprint that allows for meaningful id and class name in the HTML (as opposed to specific styling info like "span_3").  Using less css's mixins ability, structural information can be added to the class or id of a DOM element w/o pulling "styling" information directly into the HTML.  So we get the power of an industrial strength grid based css framework but don't have to compromise semantic HTML.
 
 ex.
 
@@ -46,6 +46,8 @@ you will need to add the .last mixin to any class in the final column of your de
 
 you may need to "touch" the screen.css if you modify _grid.less or any of the other files it aggregates (_layout.less, _typography.less)
 
+form inputs will need to be styled with the .input_span(@level) mixin for compatible formatting.
+ 
 TODO:
 -------
 * better support for compression (though less does greatly reduce these files)
