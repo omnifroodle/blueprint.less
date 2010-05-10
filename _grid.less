@@ -56,13 +56,13 @@
 
 /* Add these to a column to append empty cols. */
 .append (@level: 1) {
-	padding-right: ((@width * @level) + (@level * 10px));
+	padding-right: ((@column * @level) + (@level * 10px));
 }
 
 /* Add these to a column to prepend empty cols. */
 
 .prepend (@level: 1) {
-	padding-left: ((@width * @level) + (@level * 10px));
+	padding-left: ((@column * @level) + (@level * 10px));
 }
 
 /* Border on right hand side of a column. */
@@ -84,14 +84,14 @@
 next column, or to pull it into the previous column.  */
 
 .pull (@level: 1) {
-	margin-left: (@width * @level * -1) + (@level * -10px);
+	margin-left: (@column * @level * -1) + (@level * -10px);
 	float: right; 
 	position:relative;
 }
 
 .push (@level: 1) {
-	margin: 0 ((@width * @level * -1) + (@level * -10px)) 1.5em ((@width * @level * -1) + (@level * -10px));
-	float: right; position:relative;
+	margin: 0 ((@column * @level * -1) + (@level * -10px)) 1.5em ((@column * @level) + (@level * 10px));
+	float: left; position:relative;
 }
 
 /* Misc classes and elements
