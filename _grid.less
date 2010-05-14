@@ -85,13 +85,14 @@ next column, or to pull it into the previous column.  */
 
 .pull (@level: 1) {
 	margin-left: (@column * @level * -1) + (@level * -10px);
-	float: right; 
+	float: left; 
 	position:relative;
 }
 
 .push (@level: 1) {
 	margin: 0 ((@column * @level * -1) + (@level * -10px)) 1.5em ((@column * @level) + (@level * 10px));
-	float: left; position:relative;
+	float: right; 
+        position:relative;
 }
 
 /* Misc classes and elements
