@@ -4,11 +4,6 @@
    * Sets up some sensible default typography.
 
 -------------------------------------------------------------- */
-@font-color: #999;
-@a-color: #fff;
-@a-hover-color: @a-color;
-@quiet-color: @font-color + #444;
-@loud-color: #000;
 
 /* Default font settings.
    The font-size percentage is of 16px. (0.75 * 16px = 12px) */
@@ -17,7 +12,7 @@ body {
   font-size: 75%;
   color: @font-color;
   background: #fff;
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: @default_fonts;
 }
 
 
@@ -46,9 +41,9 @@ p           { margin: 0 0 1.5em; }
 p img.left  { float: left; margin: 1.5em 1.5em 1.5em 0; padding: 0; }
 p img.right { float: right; margin: 1.5em 0 1.5em 1.5em; }
 
-a:focus,
-a:hover     { color: @a-color; }
-a           { color: @a-hover-color; text-decoration: underline; }
+
+a, a:focus{ color: @a-hover-color; text-decoration: underline; }
+a:hover{ color:@a-hover-color; }
 
 blockquote  { margin: 1.5em; color: @quiet-color; font-style: italic; }
 strong      { font-weight: bold; }
