@@ -1,0 +1,19 @@
+/* Some nice defaults for ordered lists in forms
+-------------------------------------------------------------- */
+
+form													 { padding-right:10px; }
+form ol													 { list-style-type:none; margin:0; padding:0; }
+form ol li												 { padding:.5em 0; }
+form ol li label, form ol li input[type=text], 
+form ol li input[type=password], form ol li select	 	 { display:block; margin:.1em 0; }
+form ol li input, form ol li select, form ol li textarea { padding:.5em; font-size:1em; }
+form ol li ol											 { display:block; clear:both; overflow:auto; margin:-.5em 0; }
+form ol li ol li										 { float:left; margin:0 1em 0 0; }
+form ol li ol li label, form ol li ol li input			 { display:block; }
+
+/* Adds a class for instances where there
+   is more than one input/select in a list
+*/
+form li.multi input[type=text], 
+form li.multi input[type=password], 
+form li.multi select{ display:inline; }

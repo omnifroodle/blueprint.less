@@ -1,0 +1,43 @@
+/* --------------------------------------------------------------
+
+   grid.css
+   * Sets up an easy-to-use grid of x columns.
+
+   Use grid.less in most situations. This "lite" version is added
+   as a convenience so .span functions etc can be used in secondary / additional
+   css/less files without including the entire set.
+
+-------------------------------------------------------------- */
+@width: 950px;
+@column_width: 30px;
+@gutter_width: 10px;
+
+/* A container should group all your columns. */
+.container {
+  width: @width;
+  margin: 0 auto;
+}
+
+/* Use this class on any .span / container to see the grid. */
+.showgrid (@grid: 'src/grid.png') {
+  background: url(@grid);
+}
+
+
+/* Columns
+-------------------------------------------------------------- */
+
+/* Sets up basic grid floating and margin. */
+.column () {
+	float: left;
+	margin-right: @gutter_width;
+}
+
+/* Use this mixin to set the width of a column. you should avoid @levels wider then @width */
+.span (@column: 1) {
+	.column;
+	width: (@column + ((@column_width - 1) * (@column + @gutter_width)));
+}
+
+/* The last column in a row needs this class. */
+.last { margin-right: 0; }

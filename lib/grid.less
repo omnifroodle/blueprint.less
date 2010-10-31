@@ -10,10 +10,9 @@
    element names, the following
 
 -------------------------------------------------------------- */
-@width: 960px;
-@column: 30px;
-@margin: 10px;
-@box_background: #E5ECF9;
+@width: 950px;
+@column_width: 30px;
+@gutter_width: 10px;
 
 /* A container should group all your columns. */
 .container {
@@ -33,84 +32,85 @@
 /* Sets up basic grid floating and margin. */
 .column () {
 	float: left;
-	margin-right: @margin;
+	margin-right: @gutter_width;
 }
 
 /* Use this mixin to set the width of a column. you should avoid @levels wider then @width */
-.span (@level: 1) {
+.span (@column: 1) {
 	.column;
-	width: (@level * @column) + ((@level - 1) * 10px);
+	width: (@column + ((@column_width - 1) * (@column + @gutter_width)));
 }
 
 /* The last column in a row needs this class. */
 .last { margin-right: 0; }
 
 /* Use these classes to set the width of an input. */
-.input_span (@level: 1) {
+.input_span (@column: 1) {
   border-left-width: 1px;
   border-right-width: 1px;
   padding-left: 5px;
   padding-right: 5px;
-  width: ((@level * @column) + ((@level - 1) * 10px) - 12px);
+  width: ((@column * @column_width) + ((@column - 1) * 10px) - 12px);
 }
 
 /* Add these to a column to append empty cols. */
-.append (@level: 1) {
-	padding-right: ((@column * @level) + (@level * 10px));
+.append (@column: 1) {
+	padding-right: (@column * (@column_width + @gutter_width));
 }
 
 /* Add these to a column to prepend empty cols. */
 
-.prepend (@level: 1) {
-	padding-left: ((@column * @level) + (@level * 10px));
+.prepend (@column: 1) {
+	padding-left: (@column * (@column_width + @gutter_width));
 }
 
 /* Border on right hand side of a column. */
-.border () {
-  padding-right: 4px;
-  margin-right: 5px;
-  border-right: 1px solid #eee;
+.border(@border_color:#eee, @border_style:solid) {
+  padding-right:(@gutter_width * 0.5 - 1);
+  margin-right:(@gutter_width * 0.5);
+  border-right: 1px @border_style @border_color;
 }
 
 /* Border with more whitespace, spans one column. */
-.colborder () {
-  padding-right: 24px;
-  margin-right: 25px;
-  border-right: 1px solid #eee;
+.colborder(@border_color:#eee, @border_style:solid) {
+  padding-right:((@column_width + 2 * @gutter_width - 1)/2);
+  margin-right:((@column_width + 2 * @gutter_width)/2);
+  border-right: 1px @border_style @border_color;
 }
 
 
 /* Use these classes on an element to push it into the
 next column, or to pull it into the previous column.  */
 
-.pull (@level: 1) {
+.pull(@column: 1) {
+	margin-left:(@column * (@column_width + @gutter_width));
 	margin-left: (@column * @level * -1) + (@level * -10px);
 	float: left; 
 	position:relative;
 }
 
-.push (@level: 1) {
-	margin: 0 ((@column * @level * -1) + (@level * -10px)) 1.5em ((@column * @level) + (@level * 10px));
+.push (@column: 1) {
+	margin:0 -(@column * (@column_width + @gutter_width)) 1.5em (@column * (@column_width + @gutter_width));
 	float: right; 
-        position:relative;
+	position:relative;
 }
 
 /* Misc classes and elements
 -------------------------------------------------------------- */
 
 /* In case you need to add a gutter above/below an element */
-.prepend-top {
+div.prepend-top, .prepend-top {
   margin-top:1.5em;
 }
-.append-bottom {
+div.append-bottom, .append-bottom {
   margin-bottom:1.5em;
 }
 
 /* Use a .box to create a padded box inside a column.  */
-.box {
+.box(@background_color:#ccc) {
   padding: 1.5em;
   margin-bottom: 1.5em;
-  background: @box_background;
+  background:@background_color;
 }
 
 /* Use this to create a horizontal ruler across a column. */
@@ -120,7 +120,7 @@ hr {
   clear: both;
   float: none;
   width: 100%;
-  height: .1em;
+  height: 1px;
   margin: 0 0 1.45em;
   border: none;
 }
